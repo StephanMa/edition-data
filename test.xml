@@ -1,0 +1,59 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+<teiHeader>
+<fileDesc>
+<titleStmt>
+<title>A minimal TEI extension for journal articles</title>
+<author>The TBE crew</author>
+</titleStmt>
+<publicationStmt>
+<p>for use by whoever wants it</p>
+</publicationStmt>
+<sourceDesc>
+<p>no source, born digital</p>
+</sourceDesc>
+</fileDesc>
+</teiHeader>
+<text>
+<front>
+<divGen type="toc"/>
+</front>
+<body>
+<p>This customisation only selects the minimal TEI modules (<ident>core</ident>, <ident>tei</ident>, <ident>header</ident>, and <ident>textstructure</ident>) for brevity's sake, and adds 2 specific elements: <list>
+<item> <gi scheme="TBEeg">abstract</gi>: a specific header element to express the content of an article as metadata, including keywords list and paragraphs</item>
+<item> <gi scheme="TBEeg">abstractKeywords</gi>: a specific header element to encode a list of keywords in an abstract</item>
+</list> </p>
+<schemaSpec ident="abstract" docLang="en" xml:lang="en" prefix="">
+<moduleRef key="core"/>
+<moduleRef key="tei"/>
+<moduleRef key="header"/>
+<moduleRef key="textstructure"/>
+<elementSpec ident="abstract" ns="http://www.teibyexample.org/" mode="add">
+<desc>summarises the contents of a text</desc>
+<classes>
+<memberOf key="model.biblPart"/>
+<memberOf key="att.typed"/>
+</classes>
+<content>
+<rng:group>
+<rng:optional>
+<rng:ref name="abstractKeywords"/>
+</rng:optional>
+<rng:oneOrMore>
+<rng:ref name="model.pLike"/>
+</rng:oneOrMore>
+</rng:group>
+</content>
+</elementSpec>
+<elementSpec ident="abstractKeywords" ns="http://www.teibyexample.org/" mode="add">
+<desc>provides informal keywords for a text</desc>
+<classes>
+<memberOf key="att.typed"/>
+</classes>
+<content>
+<rng:text/>
+</content>
+</elementSpec>
+</schemaSpec>
+</body>
+</text>
+</TEI>
